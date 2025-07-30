@@ -52,3 +52,7 @@ def predict(data: PatientData):
     pred = model.predict(processed)[0]
     risk_level = le_risk.inverse_transform([pred])[0]
     return {"predicted_risk": risk_level}
+
+@app.get("/")
+def root():
+    return {"message": "Cholera Risk Prediction API is running."}
