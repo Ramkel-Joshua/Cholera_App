@@ -46,9 +46,7 @@ def preprocess_input(data: dict):
     df = df.reindex(columns=feature_columns, fill_value=0)
     return df
 
-@app.post("/predict")
-def predict(data: PatientData):
-    processed = preprocess_input(data.dict())
-    pred = model.predict(processed)[0]
-    risk_level = le_risk.inverse_transform([pred])[0]
-    return {"predicted_risk": risk_level}
+@app.get("/")
+def root():
+    return {"message": "Cholera Risk Prediction API is running."}
+
